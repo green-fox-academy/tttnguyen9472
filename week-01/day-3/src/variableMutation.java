@@ -63,5 +63,8 @@ public class variableMutation {
         boolean j1 = (j % 3 == 0);
         boolean j2 = (j % 5 == 0);
         // tell if j is dividable by 3 or 5 (print as a boolean)
+
+        System.out.println(j1);
+        System.out.println(j2);
     }
 }
