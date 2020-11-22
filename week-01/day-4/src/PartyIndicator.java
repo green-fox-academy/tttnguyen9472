@@ -30,7 +30,7 @@ public class PartyIndicator<sausageParty> {
             System.out.println("Quite cool party!");
         } else if (!goodNumber && !sausageParty) {
             System.out.println("Average party...");
-        } else if (sausageParty) {
+        } else {
             System.out.println("Sausage party");
         }
     }
