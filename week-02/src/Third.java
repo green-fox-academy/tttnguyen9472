@@ -6,7 +6,7 @@ public class Third {
 
         int[] numbers = {4, 5, 6, 7};
 
-        System.out.println(numbers[3]);
+        System.out.println(numbers[2]);
     }
 }
 
