@@ -10,16 +10,14 @@ public class Checkerboard {
         int square = 40;
         int x = 40;
         int y = 0;
-        int width = square;
-        int height = square;
         for (int i = 0; i < 8; i++) {
             if (i % 2 == 0) {
-                DrawOneRow(graphics, x, y, width, height);
+                DrawOneRow(graphics, x, y, square, square);
                 y = y + 40;
             } else {
                 System.out.println("x went to the left " + i);
 //                x = x - 40;
-                DrawOneRow(graphics, x - 40, y, width, height);
+                DrawOneRow(graphics, x - 40, y, square, square);
                 y = y + 40;
             }
         }
