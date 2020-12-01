@@ -29,7 +29,7 @@ public class WriteMultipleLines {
             System.out.println(word);
         }
         try {
-            Files.write(filePath, words);
+            Files.write(filePath, words, StandardOpenOption.APPEND);
         } catch (IOException e) {
             e.printStackTrace();
         }
