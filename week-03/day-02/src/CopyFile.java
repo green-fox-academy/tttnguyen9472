@@ -11,10 +11,10 @@ public class CopyFile {
         // It should take the filenames as parameters
         // It should return a boolean that shows if the copy was successful
 
-        copyContent("my-file2.txt", "newFile.txt");
+        copyContent();
     }
 
-    private static void copyContent(Path filePath, Path newFile) throws IOException {
+    private static void copyContent() throws IOException {
         List<String> content = Files.readAllLines(filePath);
        Files.write(newFile, content);
         isFileCopied();
@@ -22,7 +22,7 @@ public class CopyFile {
     }
 
     private static boolean isFileCopied() {
-        
+
         return true;
     }
 }
