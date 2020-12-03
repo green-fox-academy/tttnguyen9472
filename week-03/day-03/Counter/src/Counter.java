@@ -38,7 +38,7 @@ public class Counter {
     }
 
     public void reset() {
-        resetField = field;
+         field = resetField;
     }
 
     public static void main(String[] args) {
