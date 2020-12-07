@@ -1,3 +1,6 @@
+import java.util.ArrayList;
+import java.util.List;
+
 public class Animal {
 //    Create an Animal class
 //
@@ -41,5 +44,16 @@ public class Animal {
         animal3.play();
         System.out.println(animal3.hunger);
         System.out.println(animal3.thirst);
+
+        Farm farm1 = new Farm();
+        farm1.breed(animal1);
+        farm1.breed(animal2);
+        farm1.breed(animal3);
+        System.out.println(farm1.slots);
+
+        farm1.slaughter();
+        System.out.println(farm1.slots);
+
+
     }
 }
