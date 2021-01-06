@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Controller
 public class HelloWebController {
 
+
     @RequestMapping(value="web/greeting")
 
     public String greeting(Model model, @RequestParam String name){
