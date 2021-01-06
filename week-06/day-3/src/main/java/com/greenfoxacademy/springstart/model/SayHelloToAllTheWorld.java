@@ -3,11 +3,7 @@ package com.greenfoxacademy.springstart.model;
 import java.util.Random;
 
 public class SayHelloToAllTheWorld {
-    String greet;
 
-    public String getGreet(){
-        return getRandomGreeting();
-    }
 
     public String getRandomGreeting() {
         String[] hellos = {"Mirëdita", "Ahalan", "Parev", "Zdravei", "Nei Ho", "Dobrý den", "Ahoj", "Goddag", "Goede dag, Hallo", "Hello", "Saluton", "Hei", "Bonjour",
