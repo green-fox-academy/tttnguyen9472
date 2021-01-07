@@ -17,4 +17,10 @@ public class BankAccountController {
         model.addAttribute("animalType", bankAccount.getAnimalType());
         return "index";
     }
+
+    @GetMapping("/htmltext")
+    public String htmlText(Model model){
+
+        return "HTMLception";
+    }
 }

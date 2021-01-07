@@ -6,14 +6,10 @@
     <meta charset="utf-8" />
 </head>
 <body>
-<h1>Bank of Simba</h1>
-<br>
-Animal name: <span th:text="${name}"/>
-<br>
-Balance: <span th:text="${balance}"/>
-<br>
-Animal type: <span th:text="${animalType}"/>
 
+<p th:text="'This is an <em>HTML</em> text. <b>Enjoy yourself!</b>'"></p>
+
+<p th:utext="'This is an <em>HTML</em> text. <b>Enjoy yourself!</b>'"></p>
 
 </body>
 </html>
