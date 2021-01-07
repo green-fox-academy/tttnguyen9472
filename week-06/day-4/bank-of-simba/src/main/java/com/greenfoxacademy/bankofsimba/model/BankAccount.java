@@ -6,13 +6,23 @@ public class BankAccount {
     private String name;
     private Double balance;
     private String animalType;
+    private boolean isKing;
+
+    public boolean isKing() {
+        return isKing;
+    }
+
+    public void setKing(boolean king) {
+        isKing = king;
+    }
 
     private static DecimalFormat df2 = new DecimalFormat("#.00");
 
-    public BankAccount(String name, Double balance, String animalType) {
+    public BankAccount(String name, Double balance, String animalType, boolean isKing) {
         this.name = name;
         this.balance = balance;
         this.animalType = animalType;
+        this.isKing = isKing;
     }
 
     public String getName() {
@@ -32,7 +42,7 @@ public class BankAccount {
     }
 
     public String getFormattedBalance() {
-        return df2.format(balance).toString();
+        return df2.format(balance).toString() + " Zebra";
     }
 
     public String getAnimalType() {
@@ -41,5 +51,12 @@ public class BankAccount {
 
     public void setAnimalType(String animalType) {
         this.animalType = animalType;
+    }
+
+    public String getStyle(){
+        if(isKing){
+            return "king";
+        }
+        return "notKing";
     }
 }

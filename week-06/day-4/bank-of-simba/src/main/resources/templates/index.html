@@ -14,6 +14,33 @@ Balance: <span th:text="${balance}"/>
 <br>
 Animal type: <span th:text="${animalType}"/>
 
+<table>
+    <tr>
+        <th>Index</th>
+        <th>Name</th>
+        <th>Balance</th>
+        <th>Type</th>
 
+    </tr>
+    <tr th:style="'color:' + ${account.getStyle}" th:each="account: ${account}">
+        <td th:text="${accountStat.index}"/>
+        <td th:text="${account.name}"/>
+        <td th:text="${account.getFormattedBalance}"/>
+        <td th:text="${account.animalType}"/>
+
+
+    </tr>
+
+    </tr>
+    <tr th:class="${account.getStyle}" th:each="account: ${account}">
+        <td th:text="${accountStat.index}"/>
+        <td th:text="${account.name}"/>
+        <td th:text="${account.getFormattedBalance}"/>
+        <td th:text="${account.animalType}"/>
+
+
+
+    </tr>
+</table>
 </body>
 </html>
