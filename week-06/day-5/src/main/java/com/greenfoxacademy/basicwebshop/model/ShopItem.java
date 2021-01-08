@@ -44,4 +44,5 @@ public class ShopItem {
     public void setQuantityOfStock(Integer quantityOfStock) {
         this.quantityOfStock = quantityOfStock;
     }
+
 }
