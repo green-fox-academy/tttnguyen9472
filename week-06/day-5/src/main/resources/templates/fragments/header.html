@@ -1,6 +1,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 
 <div th:fragment="header">
+    <div class="topnav">
     <a th:href="@{/}"><h1>My Shop</h1></a>
     <hr>
 
@@ -19,6 +20,7 @@
     <a th:href="@{/most-expensive}">
         <button>MOST EXPENSIVE AVAILABLE</button>
     </a>
+    </div>
     <form action="/search" method="post">
         <label class="searchText" for="search">Search for:</label>
         <br>
