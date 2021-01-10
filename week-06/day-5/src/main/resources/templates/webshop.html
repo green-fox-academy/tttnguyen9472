@@ -15,9 +15,10 @@
     <a th:href="@{/average-stock}"><button>AVERAGE STOCK</button></a>
     <a th:href="@{/most-expensive}"><button>MOST EXPENSIVE AVAILABLE</button></a>
     <form action="/search" method="post">
-        <label for="search">Search for:</label>
-        <input id="search" name="search" placeholder="...something like nike">
-        <button type="submit">Search</button>
+        <label class="searchText" for="search">Search for:</label>
+        <br>
+        <input class="search" id="search" name="search" placeholder="...something like nike">
+        <button id="searchButton" type="submit">Search</button>
     </form>
 </header>
 
