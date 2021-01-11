@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>More filters</title>
+</head>
+<body>
+<a th:href="@{/}"><h1>My Shop</h1></a>
+<a th:href="@{/more-filters}"><h1 class="more-button">More >></h1></a>
+</div>
+<hr>
+
+<a th:href="@{/clothes-and-shoes/}">
+    <button>CLOTHES AND SHOES</button>
+</a>
+<a th:href="@{/electronics/}">
+    <button>ELECTRONICS</button>
+</a>
+<a th:href="@{/beverages-and-snacks/}">
+    <button>BEVERAGES AND SNACKS</button>
+</a>
+<a th:href="@{/price-in-eur}">
+    <button>EURO</button>
+</a>
+<a th:href="@{/price-in-original}">
+    <button>ORIGINAL CURRENCY</button>
+</a>
+
+<br>
+
+<form>
+<button>Above</button>
+<button>Below</button>
+<button>Exactly</button>
+
+<label>Filter by price: </label>
+
+    <input placeholder="...e.g.: 300">
+</form>
+
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Type</th>
+        <th>Description</th>
+        <th>Price</th>
+        <th>Quantity<br>of stock</th>
+    </tr>
+    <tr th:each="item : ${shopItems}">
+        <td th:text="${item.name}">
+        <td th:text="${item.type}">
+        <td th:text="${item.description}">
+        <td th:text="${item.getFormattedPrice()}">
+        <td th:text="${item.quantityOfStock}">
+    </tr>
+</table>
+</body>
+</html>

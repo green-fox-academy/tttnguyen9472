@@ -2,8 +2,11 @@
 
 <div th:fragment="header">
     <div class="topnav">
+    <div class="top-header">
     <a th:href="@{/}"><h1>My Shop</h1></a>
-    <hr>
+    <a th:href="@{/more-filters}"><h1 class="more-button">More >></h1></a>
+    </div>
+        <hr>
 
     <a th:href="@{/only-available}">
         <button>ONLY AVAILABLE</button>

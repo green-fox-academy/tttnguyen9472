@@ -1,16 +1,31 @@
 package com.greenfoxacademy.basicwebshop.model;
 
 public class ShopItem {
-    String name;
-    String description;
-    Double price;
-    Integer quantityOfStock;
+    private String name;
+    private String description;
+    private Double price;
+    private Integer quantityOfStock;
+    private String type;
+    private String currency;
 
-    public ShopItem(String name, String description, Double price, Integer quantityOfStock) {
+
+
+    public ShopItem(String name, String type, String description, Double price, Integer quantityOfStock) {
         this.name = name;
+        this.type = type;
         this.description = description;
         this.price = price;
+        this.currency = "Ft";
         this.quantityOfStock = quantityOfStock;
+
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getName() {
@@ -43,6 +58,18 @@ public class ShopItem {
 
     public void setQuantityOfStock(Integer quantityOfStock) {
         this.quantityOfStock = quantityOfStock;
+    }
+
+    public String getCurrency() {
+        return currency;
+    }
+
+    public String getFormattedPrice(){
+        return getPrice().toString() + " " + getCurrency();
+    }
+
+    public void setCurrency(String currency) {
+        this.currency = currency;
     }
 
 }
