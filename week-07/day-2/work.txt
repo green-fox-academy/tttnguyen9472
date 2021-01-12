@@ -243,3 +243,13 @@ mysql> select distinct year from movie inner join rating on movie.mID = rating.m
 | 2009 |
 +------+
 4 rows in set (0.01 sec)
+
+mysql> select title from movie left join rating on movie.mID = rating.mID where stars is null;
++-----------+
+| title     |
++-----------+
+| Star Wars |
+| Titanic   |
++-----------+
+2 rows in set (0.00 sec)
+
