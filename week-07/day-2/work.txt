@@ -253,3 +253,49 @@ mysql> select title from movie left join rating on movie.mID = rating.mID where 
 +-----------+
 2 rows in set (0.00 sec)
 
+mysql> select * from rating;
++------+------+-------+------------+
+| rID  | mID  | stars | ratingDate |
++------+------+-------+------------+
+|  201 |  101 |     2 | 2011-01-22 |
+|  201 |  101 |     4 | 2011-01-27 |
+|  202 |  106 |     4 | NULL       |
+|  203 |  103 |     2 | 2011-01-20 |
+|  203 |  108 |     4 | 2011-01-12 |
+|  203 |  108 |     2 | 2011-01-30 |
+|  204 |  101 |     3 | 2011-01-09 |
+|  205 |  103 |     3 | 2011-01-27 |
+|  205 |  104 |     2 | 2011-01-22 |
+|  205 |  108 |     4 | NULL       |
+|  206 |  107 |     3 | 2011-01-15 |
+|  206 |  106 |     5 | 2011-01-19 |
+|  207 |  107 |     5 | 2011-01-20 |
+|  208 |  104 |     3 | 2011-01-02 |
++------+------+-------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select * from reviewers;
+ERROR 1146 (42S02): Table 'glados.reviewers' doesn't exist
+mysql> select * from reviewer;
++------+------------------+
+| rID  | name             |
++------+------------------+
+|  201 | Sarah Martinez   |
+|  202 | Daniel Lewis     |
+|  203 | Brittany Harris  |
+|  204 | Mike Anderson    |
+|  205 | Chris Jackson    |
+|  206 | Elizabeth Thomas |
+|  207 | James Cameron    |
+|  208 | Ashley White     |
++------+------------------+
+8 rows in set (0.01 sec)
+
+mysql> select name from reviewer inner join rating on reviewer.rID = rating.rID where ratingdate is null;
++---------------+
+| name          |
++---------------+
+| Daniel Lewis  |
+| Chris Jackson |
++---------------+
+2 rows in set (0.00 sec)
