@@ -196,3 +196,50 @@ mysql> select title from movie where director = "Steven Spielberg";
 +-------------------------+
 2 rows in set (0.00 sec)
 
+mysql> select * from movie inner join rating on movie.mID = rating.mID;
++------+-------------------------+------+------------------+------+------+-------+------------+
+| mID  | title                   | year | director         | rID  | mID  | stars | ratingDate |
++------+-------------------------+------+------------------+------+------+-------+------------+
+|  101 | Gone with the Wind      | 1939 | Victor Fleming   |  201 |  101 |     2 | 2011-01-22 |
+|  101 | Gone with the Wind      | 1939 | Victor Fleming   |  201 |  101 |     4 | 2011-01-27 |
+|  106 | Snow White              | 1937 | NULL             |  202 |  106 |     4 | NULL       |
+|  103 | The Sound of Music      | 1965 | Robert Wise      |  203 |  103 |     2 | 2011-01-20 |
+|  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |  203 |  108 |     4 | 2011-01-12 |
+|  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |  203 |  108 |     2 | 2011-01-30 |
+|  101 | Gone with the Wind      | 1939 | Victor Fleming   |  204 |  101 |     3 | 2011-01-09 |
+|  103 | The Sound of Music      | 1965 | Robert Wise      |  205 |  103 |     3 | 2011-01-27 |
+|  104 | E.T.                    | 1982 | Steven Spielberg |  205 |  104 |     2 | 2011-01-22 |
+|  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |  205 |  108 |     4 | NULL       |
+|  107 | Avatar                  | 2009 | James Cameron    |  206 |  107 |     3 | 2011-01-15 |
+|  106 | Snow White              | 1937 | NULL             |  206 |  106 |     5 | 2011-01-19 |
+|  107 | Avatar                  | 2009 | James Cameron    |  207 |  107 |     5 | 2011-01-20 |
+|  104 | E.T.                    | 1982 | Steven Spielberg |  208 |  104 |     3 | 2011-01-02 |
++------+-------------------------+------+------------------+------+------+-------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select year from movie inner join rating on movie.mID = rating.mID IN (4,5);
+Empty set (0.00 sec)
+
+mysql> select year from movie inner join rating on movie.mID = rating.mID where stars IN (4,5);
++------+
+| year |
++------+
+| 1939 |
+| 1937 |
+| 1937 |
+| 2009 |
+| 1981 |
+| 1981 |
++------+
+6 rows in set (0.00 sec)
+
+mysql> select distinct year from movie inner join rating on movie.mID = rating.mID where stars IN (4,5) order by year;
++------+
+| year |
++------+
+| 1937 |
+| 1939 |
+| 1981 |
+| 2009 |
++------+
+4 rows in set (0.01 sec)
