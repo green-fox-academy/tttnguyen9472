@@ -299,3 +299,24 @@ mysql> select name from reviewer inner join rating on reviewer.rID = rating.rID 
 | Chris Jackson |
 +---------------+
 2 rows in set (0.00 sec)
+
+mysql> select name, title, stars, ratingdate from reviewer inner join rating on reviewer.rID = rating.rID inner join movie on rating.mID = movie.mID ORDER BY name ASC, title ASC, stars ASC;
++------------------+-------------------------+-------+------------+
+| name             | title                   | stars | ratingdate |
++------------------+-------------------------+-------+------------+
+| Ashley White     | E.T.                    |     3 | 2011-01-02 |
+| Brittany Harris  | Raiders of the Lost Ark |     2 | 2011-01-30 |
+| Brittany Harris  | Raiders of the Lost Ark |     4 | 2011-01-12 |
+| Brittany Harris  | The Sound of Music      |     2 | 2011-01-20 |
+| Chris Jackson    | E.T.                    |     2 | 2011-01-22 |
+| Chris Jackson    | Raiders of the Lost Ark |     4 | NULL       |
+| Chris Jackson    | The Sound of Music      |     3 | 2011-01-27 |
+| Daniel Lewis     | Snow White              |     4 | NULL       |
+| Elizabeth Thomas | Avatar                  |     3 | 2011-01-15 |
+| Elizabeth Thomas | Snow White              |     5 | 2011-01-19 |
+| James Cameron    | Avatar                  |     5 | 2011-01-20 |
+| Mike Anderson    | Gone with the Wind      |     3 | 2011-01-09 |
+| Sarah Martinez   | Gone with the Wind      |     2 | 2011-01-22 |
+| Sarah Martinez   | Gone with the Wind      |     4 | 2011-01-27 |
++------------------+-------------------------+-------+------------+
+14 rows in set (0.00 sec)
