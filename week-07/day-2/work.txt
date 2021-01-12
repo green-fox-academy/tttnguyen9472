@@ -1,0 +1,198 @@
+
+mysql> create database glados
+    -> ;
+Query OK, 1 row affected (0.05 sec)
+
+mysql> use glados;
+Database changed
+mysql> -- Database of movie-rating website
+mysql> /* Delete the tables if they already exist */
+mysql> drop table if exists Movie;
+Query OK, 0 rows affected, 1 warning (0.01 sec)
+
+mysql> drop table if exists Reviewer;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> drop table if exists Rating;
+Query OK, 0 rows affected, 1 warning (0.00 sec)
+
+mysql> 
+mysql> /* Create the schema for our tables */
+mysql> create table Movie(mID int, title text, year int, director text);
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> create table Reviewer(rID int, name text);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> create table Rating(rID int, mID int, stars int, ratingDate date);
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> 
+mysql> /* Populate the tables with our data */
+mysql> insert into Movie values(101, 'Gone with the Wind', 1939, 'Victor Fleming');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Movie values(102, 'Star Wars', 1977, 'George Lucas');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Movie values(103, 'The Sound of Music', 1965, 'Robert Wise'); 
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Movie values(104, 'E.T.', 1982, 'Steven Spielberg');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Movie values(105, 'Titanic', 1997, 'James Cameron');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Movie values(106, 'Snow White', 1937, null);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Movie values(107, 'Avatar', 2009, 'James Cameron');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Movie values(108, 'Raiders of the Lost Ark', 1981, 'Steven Spielberg');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> 
+mysql> insert into Reviewer values(201, 'Sarah Martinez');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Reviewer values(202, 'Daniel Lewis');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Reviewer values(203, 'Brittany Harris');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Reviewer values(204, 'Mike Anderson');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Reviewer values(205, 'Chris Jackson');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Reviewer values(206, 'Elizabeth Thomas');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Reviewer values(207, 'James Cameron');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Reviewer values(208, 'Ashley White');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> 
+mysql> insert into Rating values(201, 101, 2, '2011-01-22');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Rating values(201, 101, 4, '2011-01-27');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(202, 106, 4, null);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(203, 103, 2, '2011-01-20');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(203, 108, 4, '2011-01-12');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(203, 108, 2, '2011-01-30');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(204, 101, 3, '2011-01-09');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(205, 103, 3, '2011-01-27');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(205, 104, 2, '2011-01-22');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(205, 108, 4, null);
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(206, 107, 3, '2011-01-15');
+Query OK, 1 row affected (0.01 sec)
+
+mysql> insert into Rating values(206, 106, 5, '2011-01-19');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(207, 107, 5, '2011-01-20');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> insert into Rating values(208, 104, 3, '2011-01-02');
+Query OK, 1 row affected (0.00 sec)
+
+mysql> select * from glados
+    -> ;
+ERROR 1146 (42S02): Table 'glados.glados' doesn't exist
+mysql> show tables
+    -> ;
++------------------+
+| Tables_in_glados |
++------------------+
+| Movie            |
+| Rating           |
+| Reviewer         |
++------------------+
+3 rows in set (0.01 sec)
+
+mysql> select * from movie
+    -> ;
++------+-------------------------+------+------------------+
+| mID  | title                   | year | director         |
++------+-------------------------+------+------------------+
+|  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  102 | Star Wars               | 1977 | George Lucas     |
+|  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  104 | E.T.                    | 1982 | Steven Spielberg |
+|  105 | Titanic                 | 1997 | James Cameron    |
+|  106 | Snow White              | 1937 | NULL             |
+|  107 | Avatar                  | 2009 | James Cameron    |
+|  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
++------+-------------------------+------+------------------+
+8 rows in set (0.00 sec)
+
+mysql> select * from rating;
++------+------+-------+------------+
+| rID  | mID  | stars | ratingDate |
++------+------+-------+------------+
+|  201 |  101 |     2 | 2011-01-22 |
+|  201 |  101 |     4 | 2011-01-27 |
+|  202 |  106 |     4 | NULL       |
+|  203 |  103 |     2 | 2011-01-20 |
+|  203 |  108 |     4 | 2011-01-12 |
+|  203 |  108 |     2 | 2011-01-30 |
+|  204 |  101 |     3 | 2011-01-09 |
+|  205 |  103 |     3 | 2011-01-27 |
+|  205 |  104 |     2 | 2011-01-22 |
+|  205 |  108 |     4 | NULL       |
+|  206 |  107 |     3 | 2011-01-15 |
+|  206 |  106 |     5 | 2011-01-19 |
+|  207 |  107 |     5 | 2011-01-20 |
+|  208 |  104 |     3 | 2011-01-02 |
++------+------+-------+------------+
+14 rows in set (0.00 sec)
+
+mysql> select * from reviewer;
++------+------------------+
+| rID  | name             |
++------+------------------+
+|  201 | Sarah Martinez   |
+|  202 | Daniel Lewis     |
+|  203 | Brittany Harris  |
+|  204 | Mike Anderson    |
+|  205 | Chris Jackson    |
+|  206 | Elizabeth Thomas |
+|  207 | James Cameron    |
+|  208 | Ashley White     |
++------+------------------+
+8 rows in set (0.00 sec)
+
+mysql> select title from movie where director = "Steven Spielberg";
++-------------------------+
+| title                   |
++-------------------------+
+| E.T.                    |
+| Raiders of the Lost Ark |
++-------------------------+
+2 rows in set (0.00 sec)
+
