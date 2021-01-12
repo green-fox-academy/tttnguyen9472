@@ -187,6 +187,8 @@ mysql> select * from reviewer;
 +------+------------------+
 8 rows in set (0.00 sec)
 
+EXERCISE 1
+
 mysql> select title from movie where director = "Steven Spielberg";
 +-------------------------+
 | title                   |
@@ -233,6 +235,8 @@ mysql> select year from movie inner join rating on movie.mID = rating.mID where 
 +------+
 6 rows in set (0.00 sec)
 
+EXERCISE 2
+
 mysql> select distinct year from movie inner join rating on movie.mID = rating.mID where stars IN (4,5) order by year;
 +------+
 | year |
@@ -243,6 +247,8 @@ mysql> select distinct year from movie inner join rating on movie.mID = rating.m
 | 2009 |
 +------+
 4 rows in set (0.01 sec)
+
+EXERCISE 3
 
 mysql> select title from movie left join rating on movie.mID = rating.mID where stars is null;
 +-----------+
@@ -291,6 +297,8 @@ mysql> select * from reviewer;
 +------+------------------+
 8 rows in set (0.01 sec)
 
+EXERCISE 4
+
 mysql> select name from reviewer inner join rating on reviewer.rID = rating.rID where ratingdate is null;
 +---------------+
 | name          |
@@ -299,6 +307,8 @@ mysql> select name from reviewer inner join rating on reviewer.rID = rating.rID 
 | Chris Jackson |
 +---------------+
 2 rows in set (0.00 sec)
+
+EXERCISE 5
 
 mysql> select name, title, stars, ratingdate from reviewer inner join rating on reviewer.rID = rating.rID inner join movie on rating.mID = movie.mID ORDER BY name ASC, title ASC, stars ASC;
 +------------------+-------------------------+-------+------------+
@@ -320,3 +330,147 @@ mysql> select name, title, stars, ratingdate from reviewer inner join rating on 
 | Sarah Martinez   | Gone with the Wind      |     4 | 2011-01-27 |
 +------------------+-------------------------+-------+------------+
 14 rows in set (0.00 sec)
+
+EXERCISE 6
+
+mysql> select * from reviewer inner join rating on reviewer.rID = rating.rID inner join movie on rating.mID = movie.mID;
++------+------------------+------+------+-------+------------+------+-------------------------+------+------------------+
+| rID  | name             | rID  | mID  | stars | ratingDate | mID  | title                   | year | director         |
++------+------------------+------+------+-------+------------+------+-------------------------+------+------------------+
+|  201 | Sarah Martinez   |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  204 | Mike Anderson    |  204 |  101 |     3 | 2011-01-09 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  203 | Brittany Harris  |  203 |  103 |     2 | 2011-01-20 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  205 | Chris Jackson    |  205 |  103 |     3 | 2011-01-27 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  205 | Chris Jackson    |  205 |  104 |     2 | 2011-01-22 |  104 | E.T.                    | 1982 | Steven Spielberg |
+|  208 | Ashley White     |  208 |  104 |     3 | 2011-01-02 |  104 | E.T.                    | 1982 | Steven Spielberg |
+|  202 | Daniel Lewis     |  202 |  106 |     4 | NULL       |  106 | Snow White              | 1937 | NULL             |
+|  206 | Elizabeth Thomas |  206 |  106 |     5 | 2011-01-19 |  106 | Snow White              | 1937 | NULL             |
+|  206 | Elizabeth Thomas |  206 |  107 |     3 | 2011-01-15 |  107 | Avatar                  | 2009 | James Cameron    |
+|  207 | James Cameron    |  207 |  107 |     5 | 2011-01-20 |  107 | Avatar                  | 2009 | James Cameron    |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  108 |     4 | NULL       |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
++------+------------------+------+------+-------+------------+------+-------------------------+------+------------------+
+14 rows in set (0.02 sec)
+
+mysql> select * from reviewer inner join r1 on reviewer.rID = r1.rID inner join r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID;
+ERROR 1146 (42S02): Table 'glados.r1' doesn't exist
+mysql> select DISTINCT * from reviewer inner join rating r1 on reviewer.rID = r1.rID inner join rating r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID ;
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+| rID  | name             | rID  | mID  | stars | ratingDate | rID  | mID  | stars | ratingDate | mID  | title                   | year | director         |
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+|  201 | Sarah Martinez   |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     4 | 2011-01-27 |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     4 | 2011-01-27 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  202 | Daniel Lewis     |  202 |  106 |     4 | NULL       |  202 |  106 |     4 | NULL       |  106 | Snow White              | 1937 | NULL             |
+|  203 | Brittany Harris  |  203 |  103 |     2 | 2011-01-20 |  203 |  103 |     2 | 2011-01-20 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  203 |  103 |     2 | 2011-01-20 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  203 |  103 |     2 | 2011-01-20 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  103 |     2 | 2011-01-20 |  203 |  108 |     4 | 2011-01-12 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  103 |     2 | 2011-01-20 |  203 |  108 |     2 | 2011-01-30 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  204 | Mike Anderson    |  204 |  101 |     3 | 2011-01-09 |  204 |  101 |     3 | 2011-01-09 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  205 | Chris Jackson    |  205 |  103 |     3 | 2011-01-27 |  205 |  103 |     3 | 2011-01-27 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  205 | Chris Jackson    |  205 |  104 |     2 | 2011-01-22 |  205 |  103 |     3 | 2011-01-27 |  104 | E.T.                    | 1982 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  108 |     4 | NULL       |  205 |  103 |     3 | 2011-01-27 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  103 |     3 | 2011-01-27 |  205 |  104 |     2 | 2011-01-22 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  205 | Chris Jackson    |  205 |  104 |     2 | 2011-01-22 |  205 |  104 |     2 | 2011-01-22 |  104 | E.T.                    | 1982 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  108 |     4 | NULL       |  205 |  104 |     2 | 2011-01-22 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  103 |     3 | 2011-01-27 |  205 |  108 |     4 | NULL       |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  205 | Chris Jackson    |  205 |  104 |     2 | 2011-01-22 |  205 |  108 |     4 | NULL       |  104 | E.T.                    | 1982 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  108 |     4 | NULL       |  205 |  108 |     4 | NULL       |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  206 | Elizabeth Thomas |  206 |  106 |     5 | 2011-01-19 |  206 |  107 |     3 | 2011-01-15 |  106 | Snow White              | 1937 | NULL             |
+|  206 | Elizabeth Thomas |  206 |  107 |     3 | 2011-01-15 |  206 |  107 |     3 | 2011-01-15 |  107 | Avatar                  | 2009 | James Cameron    |
+|  206 | Elizabeth Thomas |  206 |  106 |     5 | 2011-01-19 |  206 |  106 |     5 | 2011-01-19 |  106 | Snow White              | 1937 | NULL             |
+|  206 | Elizabeth Thomas |  206 |  107 |     3 | 2011-01-15 |  206 |  106 |     5 | 2011-01-19 |  107 | Avatar                  | 2009 | James Cameron    |
+|  207 | James Cameron    |  207 |  107 |     5 | 2011-01-20 |  207 |  107 |     5 | 2011-01-20 |  107 | Avatar                  | 2009 | James Cameron    |
+|  208 | Ashley White     |  208 |  104 |     3 | 2011-01-02 |  208 |  104 |     3 | 2011-01-02 |  104 | E.T.                    | 1982 | Steven Spielberg |
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+30 rows in set (0.01 sec)
+
+mysql> select DISTINCT * from reviewer inner join rating r1 on reviewer.rID = r1.rID inner join rating r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID where r1.mID = r2.mID
+    -> ;
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+| rID  | name             | rID  | mID  | stars | ratingDate | rID  | mID  | stars | ratingDate | mID  | title                   | year | director         |
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+|  201 | Sarah Martinez   |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     4 | 2011-01-27 |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     4 | 2011-01-27 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  202 | Daniel Lewis     |  202 |  106 |     4 | NULL       |  202 |  106 |     4 | NULL       |  106 | Snow White              | 1937 | NULL             |
+|  203 | Brittany Harris  |  203 |  103 |     2 | 2011-01-20 |  203 |  103 |     2 | 2011-01-20 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  204 | Mike Anderson    |  204 |  101 |     3 | 2011-01-09 |  204 |  101 |     3 | 2011-01-09 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  205 | Chris Jackson    |  205 |  103 |     3 | 2011-01-27 |  205 |  103 |     3 | 2011-01-27 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  205 | Chris Jackson    |  205 |  104 |     2 | 2011-01-22 |  205 |  104 |     2 | 2011-01-22 |  104 | E.T.                    | 1982 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  108 |     4 | NULL       |  205 |  108 |     4 | NULL       |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  206 | Elizabeth Thomas |  206 |  107 |     3 | 2011-01-15 |  206 |  107 |     3 | 2011-01-15 |  107 | Avatar                  | 2009 | James Cameron    |
+|  206 | Elizabeth Thomas |  206 |  106 |     5 | 2011-01-19 |  206 |  106 |     5 | 2011-01-19 |  106 | Snow White              | 1937 | NULL             |
+|  207 | James Cameron    |  207 |  107 |     5 | 2011-01-20 |  207 |  107 |     5 | 2011-01-20 |  107 | Avatar                  | 2009 | James Cameron    |
+|  208 | Ashley White     |  208 |  104 |     3 | 2011-01-02 |  208 |  104 |     3 | 2011-01-02 |  104 | E.T.                    | 1982 | Steven Spielberg |
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+18 rows in set (0.01 sec)
+
+mysql> select DISTINCT * from reviewer inner join rating r1 on reviewer.rID = r1.rID inner join rating r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID where r1.mID = r2.mID AND r1.rID = r2.rID;
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+| rID  | name             | rID  | mID  | stars | ratingDate | rID  | mID  | stars | ratingDate | mID  | title                   | year | director         |
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+|  201 | Sarah Martinez   |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     4 | 2011-01-27 |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez   |  201 |  101 |     4 | 2011-01-27 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  202 | Daniel Lewis     |  202 |  106 |     4 | NULL       |  202 |  106 |     4 | NULL       |  106 | Snow White              | 1937 | NULL             |
+|  203 | Brittany Harris  |  203 |  103 |     2 | 2011-01-20 |  203 |  103 |     2 | 2011-01-20 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     4 | 2011-01-12 |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris  |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  204 | Mike Anderson    |  204 |  101 |     3 | 2011-01-09 |  204 |  101 |     3 | 2011-01-09 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  205 | Chris Jackson    |  205 |  103 |     3 | 2011-01-27 |  205 |  103 |     3 | 2011-01-27 |  103 | The Sound of Music      | 1965 | Robert Wise      |
+|  205 | Chris Jackson    |  205 |  104 |     2 | 2011-01-22 |  205 |  104 |     2 | 2011-01-22 |  104 | E.T.                    | 1982 | Steven Spielberg |
+|  205 | Chris Jackson    |  205 |  108 |     4 | NULL       |  205 |  108 |     4 | NULL       |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  206 | Elizabeth Thomas |  206 |  107 |     3 | 2011-01-15 |  206 |  107 |     3 | 2011-01-15 |  107 | Avatar                  | 2009 | James Cameron    |
+|  206 | Elizabeth Thomas |  206 |  106 |     5 | 2011-01-19 |  206 |  106 |     5 | 2011-01-19 |  106 | Snow White              | 1937 | NULL             |
+|  207 | James Cameron    |  207 |  107 |     5 | 2011-01-20 |  207 |  107 |     5 | 2011-01-20 |  107 | Avatar                  | 2009 | James Cameron    |
+|  208 | Ashley White     |  208 |  104 |     3 | 2011-01-02 |  208 |  104 |     3 | 2011-01-02 |  104 | E.T.                    | 1982 | Steven Spielberg |
++------+------------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+18 rows in set (0.00 sec)
+
+mysql> select DISTINCT * from reviewer inner join rating r1 on reviewer.rID = r1.rID inner join rating r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID where r1.mID = r2.mID AND r1.stars != r2.stars;
++------+-----------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+| rID  | name            | rID  | mID  | stars | ratingDate | rID  | mID  | stars | ratingDate | mID  | title                   | year | director         |
++------+-----------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+|  201 | Sarah Martinez  |  201 |  101 |     4 | 2011-01-27 |  201 |  101 |     2 | 2011-01-22 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  201 | Sarah Martinez  |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  203 | Brittany Harris |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
+|  203 | Brittany Harris |  203 |  108 |     4 | 2011-01-12 |  203 |  108 |     2 | 2011-01-30 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
++------+-----------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+4 rows in set (0.00 sec)
+
+mysql> select DISTINCT * from reviewer inner join rating r1 on reviewer.rID = r1.rID inner join rating r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID where r1.mID = r2.mID AND r1.stars != r2.stars and and r1.stars < r2.stars;
+ERROR 1064 (42000): You have an error in your SQL syntax; check the manual that corresponds to your MySQL server version for the right syntax to use near 'and r1.stars < r2.stars' at line 1
+mysql> select DISTINCT * from reviewer inner join rating r1 on reviewer.rID = r1.rID inner join rating r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID where r1.mID = r2.mID AND r1.stars != r2.stars and r1.stars < r2.stars;
++------+-----------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+| rID  | name            | rID  | mID  | stars | ratingDate | rID  | mID  | stars | ratingDate | mID  | title                   | year | director         |
++------+-----------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+|  201 | Sarah Martinez  |  201 |  101 |     2 | 2011-01-22 |  201 |  101 |     4 | 2011-01-27 |  101 | Gone with the Wind      | 1939 | Victor Fleming   |
+|  203 | Brittany Harris |  203 |  108 |     2 | 2011-01-30 |  203 |  108 |     4 | 2011-01-12 |  108 | Raiders of the Lost Ark | 1981 | Steven Spielberg |
++------+-----------------+------+------+-------+------------+------+------+-------+------------+------+-------------------------+------+------------------+
+2 rows in set (0.00 sec)
+
+
+mysql> select DISTINCT name, title from reviewer inner join rating r1 on reviewer.rID = r1.rID inner join rating r2 on reviewer.rID = r2.rID inner join movie on r1.mID = movie.mID where r1.mID = r2.mID AND r1.stars < r2.stars and r1.ratingdate < r2.ratingdate;
++----------------+--------------------+
+| name           | title              |
++----------------+--------------------+
+| Sarah Martinez | Gone with the Wind |
++----------------+--------------------+
+1 row in set (0.00 sec)
