@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Utilities</title>
+</head>
+<body>
+<a th:href="@{/useful/colored}">
+    <button>Colored background</button>
+</a>
+<a th:href="@{/useful/email?email=is@this.valid}">
+    <button>Email validating</button>
+</a>
+
+<br>
+
+<form method="get" action="/useful/caesar-encoding">
+    <label for="encodedText">Text to Encode: </label>
+    <input type="text" id="encodedText" name="encodedText">
+    <label for="encodedNumber">Encoding number:</label>
+    <input type="number" id="encodedNumber" name="encodedNumber" min="0">
+    <button type="submit">Encode</button>
+</form>
+<br>
+<form method="get" action="/useful/caesar-decoding">
+    <label for="decodedText">Text to Decode: </label>
+    <input type="text" id="decodedText" name="decodedText">
+    <label for="decodedNumber">Decoding number:</label>
+    <input type="number" id="decodedNumber" name="decodedNumber" min="0">
+    <button type="submit">Decode</button>
+</form>
+</body>
+</html>

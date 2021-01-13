@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Colored background</title>
+</head>
+<body th:style="'background-color: ' + ${color}">
+<a th:href="@{/useful}">
+    <button>Home page</button>
+</a>
+
+</body>
+</html>
