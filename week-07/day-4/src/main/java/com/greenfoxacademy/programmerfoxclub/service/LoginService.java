@@ -13,19 +13,19 @@ public class LoginService {
     private List<Fox> foxList;
 
     @Autowired
-    public LoginService(){
+    public LoginService() {
         foxList = new ArrayList<>();
-
+        foxList.add(new Fox("Mr. Green"));
     }
 
 
-    public String newFox(String name){
+    public String newFoxName(String name) {
         foxList.add(new Fox());
         foxList.get(foxList.size() - 1).setName(name);
         return foxList.get(foxList.size() - 1).getName();
     }
 
-    public List<Fox> getFoxList(){
+    public List<Fox> getFoxList() {
         return foxList;
     }
 }
