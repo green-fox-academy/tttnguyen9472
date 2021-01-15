@@ -6,31 +6,34 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="select-page-container">
+    <a th:href="@{/}">
+        <button class="menu-button">INFORMATION</button>
+    </a>
+    <a th:href="@{/login}">
+        <button class="menu-button">LOGIN</button>
+    </a>
 
-<a th:href="@{/}">
-    <button>INFORMATION</button>
-</a>
-<a th:href="@{/login}">
-    <button>LOGIN</button>
-</a>
+    <a th:href="@{/nutrition-store}">
+        <button class="menu-button">NUTRITION STORE</button>
+    </a>
+    <a th:href="@{/action-history}">
+        <button class="menu-button">ACTION HISTORY</button>
+    </a>
 
-<a th:href="@{/nutrition-store}">
-    <button>NUTRITION STORE</button>
-</a>
-<a th:href="@{/action-history}">
-    <button>ACTION HISTORY</button>
-</a>
 
-<br>
 
-<form action="/trick-center" method="post">
-    <select name="trick" id="trick">
-        <option th:text="${trick}" th:value="${trick}" th:each="trick: ${trickList}">
-    </select>
+    <br>
+    <div class="select-container" style="width:200px;">
+        <form action="/trick-center" method="post">
+            <select class="selector" name="trick" id="trick">
+                <option th:text="${trick}" th:value="${trick}" th:each="trick: ${trickList}">
+            </select>
 
-    <button type="submit">Change</button>
+            <button id="submitName" type="submit">Change</button>
 
-</form>
-
+        </form>
+    </div>
+</div>
 </body>
 </html>

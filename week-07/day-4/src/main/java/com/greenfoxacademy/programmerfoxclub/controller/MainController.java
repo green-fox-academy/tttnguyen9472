@@ -38,7 +38,7 @@ public class MainController {
         model.addAttribute("drink", informationService.foxDrink());
         model.addAttribute("trickNumber", informationService.foxTricks());
         model.addAttribute("actualTricks", informationService.actualFoxTricks());
-
+        model.addAttribute("randomMood", informationService.randomMood());
         return "index";
     }
 
@@ -54,28 +54,28 @@ public class MainController {
     }
 
     @GetMapping("/nutrition-store")
-    public String nutritionStore(Model model){
+    public String nutritionStore(Model model) {
         model.addAttribute("foodList", nutritionService.getFoodList());
         model.addAttribute("drinkList", nutritionService.getDrinkList());
         return "nutrition";
     }
 
     @PostMapping("/nutrition-store")
-    public String postNutrition(@RequestParam String food, String drink, Model model){
+    public String postNutrition(@RequestParam String food, String drink, Model model) {
         model.addAttribute("food", nutritionService.foxFood(food));
         model.addAttribute("drink", nutritionService.foxDrink(drink));
         return "redirect:/?name=" + informationService.foxName();
     }
 
     @GetMapping("/trick-center")
-    public String trickCenter(Model model){
+    public String trickCenter(Model model) {
         model.addAttribute("trickList", trickService.getTrickList());
 
         return "trickCenter";
     }
 
     @PostMapping("/trick-center")
-    public String postTrick(@RequestParam String trick, Model model){
+    public String postTrick(@RequestParam String trick, Model model) {
         model.addAttribute("trick", trickService.foxTricks(trick));
 
         return "redirect:/?name=" + informationService.foxName();

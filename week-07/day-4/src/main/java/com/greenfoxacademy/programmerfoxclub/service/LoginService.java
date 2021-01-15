@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class LoginService {
@@ -20,6 +21,10 @@ public class LoginService {
 
 
     public String newFoxName(String name) {
+        if (foxList.stream().filter(f -> f.getName().equals(name)).collect(Collectors.toList()).size() != 0){
+            foxList.stream().filter(f -> f.getName().equals(name)).collect(Collectors.toList());
+            return foxList.get(foxList.size() - 1).getName();
+        }
         foxList.add(new Fox());
         foxList.get(foxList.size() - 1).setName(name);
         return foxList.get(foxList.size() - 1).getName();

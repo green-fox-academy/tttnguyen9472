@@ -6,35 +6,39 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="select-page-container">
+    <a th:href="@{/}">
+        <button class="menu-button">INFORMATION</button>
+    </a>
+    <a th:href="@{/login}">
+        <button class="menu-button">LOGIN</button>
+    </a>
 
-<a th:href="@{/}">
-    <button>INFORMATION</button>
-</a>
-<a th:href="@{/login}">
-    <button>LOGIN</button>
-</a>
+    <a th:href="@{/trick-center}">
+        <button class="menu-button">TRICK CENTER</button>
+    </a>
+    <a th:href="@{/action-history}">
+        <button class="menu-button">ACTION HISTORY</button>
+    </a>
 
-<a th:href="@{/trick-center}">
-    <button>TRICK CENTER</button>
-</a>
-<a th:href="@{/action-history}">
-    <button>ACTION HISTORY</button>
-</a>
+    <br>
 
-<br>
+    <div class="select-container" style="width:200px;">
+        <form action="/nutrition-store" method="post">
+<!--            <label class="labels" for="food">Food: </label>-->
+            <select class="selector" name="food" id="food">
+                <option th:text="${food}" th:value="${food}" th:each="food: ${foodList}">
+            </select>
 
-<form action="/nutrition-store" method="post">
-<select name="food" id="food">
-    <option th:text="${food}" th:value="${food}" th:each="food: ${foodList}">
-</select>
+<!--            <label class="labels" for="drink">Drink: </label>-->
+            <select class="selector" name="drink" id="drink">
+                <option th:text="${drink}" th:value="${drink}" th:each="drink: ${drinkList}">
+            </select>
 
-<select name="drink" id="drink">
-    <option th:text="${drink}" th:value="${drink}" th:each="drink: ${drinkList}">
-</select>
+            <button id="submitName" type="submit">Change</button>
 
-<button type="submit">Change</button>
-
-</form>
-
+        </form>
+    </div>
+</div>
 </body>
 </html>

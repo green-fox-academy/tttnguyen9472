@@ -6,47 +6,41 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="main-container">
+    <div class="top-header">
+        <img src="image/greenfox.png" class="logo">
 
+        <a th:href="@{/}">
+            <button class="menu-button">INFORMATION</button>
+        </a>
+        <a th:href="@{/login}">
+            <button class="menu-button">LOGIN</button>
+        </a>
+        <a th:href="@{/nutrition-store}">
+            <button class="menu-button">NUTRITION STORE</button>
+        </a>
+        <a th:href="@{/trick-center}">
+            <button class="menu-button">TRICK CENTER</button>
+        </a>
+        <a th:href="@{/action-history}">
+            <button class="menu-button">ACTION HISTORY</button>
+        </a>
+    </div>
 
-<a th:href="@{/}">
-    <button>INFORMATION</button>
-</a>
-<a th:href="@{/login}">
-    <button>LOGIN</button>
-</a>
-<a th:href="@{/nutrition-store}">
-    <button>NUTRITION STORE</button>
-</a>
-<a th:href="@{/trick-center}">
-    <button>TRICK CENTER</button>
-</a>
-<a th:href="@{/action-history}">
-    <button>ACTION HISTORY</button>
-</a>
-
-<img src="image/greenfox.png">
+    <hr>
+<br>
 
 <p th:text="'This is ' + ${name} + '. Currently living on ' + ${food} + ' and ' + ${drink} + ' . He knows ' + ${trickNumber} + ' tricks.'"</p>
 
+<br>
+<div class="lists">
 <h1>Known tricks</h1>
 <table>
     <tr th:each="trick : ${actualTricks}">
-<p th:if="${actualTricks.size == 0}">You know no tricks, yet. Go learn some.</p>
-    <td th:text="${trick}">
+        <p th:if="${actualTricks.size == 0}">You know no tricks, yet. Go learn some.</p>
+        <td th:text="${trick}">
     </tr>
 </table>
-<!--<select name="tricks" id="tricks">-->
-<!--    <option th:text="${tricks}" th:value="${tricks}" th:each="tricks: ${trickList}">-->
-<!--</select>-->
-
-<!--<table>-->
-<!--    <tr>-->
-<!--        <th>All the tricks:</th>-->
-<!--    </tr>-->
-<!--    <tr th:each="trick : ${trickList}">-->
-<!--        <td th:text="${trick}">-->
-<!--    </tr>-->
-<!--</table>-->
 
 <div class="foxList">
     <table>
@@ -57,9 +51,16 @@
             <td th:text="${fox.getName}">
         </tr>
     </table>
+</div>
+</div>
+    <h2>Current mood: </h2>
+<!--    <p th:each="mood : ${randomMood}" th:style="'background-image:url(' + ${mood} + '); background-repeat: no-repeat, repeat; background-size: auto;'"></p>-->
+<div class="randomMood">
+    <img th:src="${randomMood}">
+</div>
 
 
 </div>
-
+</div>
 </body>
 </html>

@@ -6,15 +6,21 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+<div class="login-container">
 
-<h1>Welcome to Programmer Fox Club</h1>
-<p>Please provide a name, so you can associate it to your pet!</p>
+<p id="login-text"> Welcome to Programmer Fox Club</p>
 
+<p id="intro-text">Please provide a name, so you can associate it to your pet!</p>
+
+    <br>
+
+    <div class="form-container">
 <form action="/login" method="post">
     <label for="submitName">Name:</label>
-    <input class="name" id="name" name="name">
+    <input class="inputfield" type="text" id="username" name="name" placeholder="fx.: Vuk">
     <button id="submitName" type="submit">GO</button>
 </form>
-
+    </div>
+</div>
 </body>
 </html>
