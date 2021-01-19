@@ -6,8 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
-import java.util.stream.Collectors;
+
 
 @Service
 public class TodoService {
@@ -19,20 +18,20 @@ public class TodoService {
         this.todoRepository = todoRepository;
     }
 
-    public List<Todo> getAllToDos(){
+    public List<Todo> getAllToDos() {
         return (List<Todo>) todoRepository.findAll();
     }
 
 
-    public void addTodos(Todo todo){
+    public void addTodos(Todo todo) {
         todoRepository.save(todo);
     }
 
+    public List<Todo> getAllUndone(Boolean isActive) {
+        return todoRepository.findAllByIsDone(!isActive);
+    }
 
-
-    public Optional<List<Todo>> getAllDone(){
-        return todoRepository.findAllByIsDoneTrue().stream()
-                .filter(f -> f.getIsDone().equals(true))
-                .collect(Collectors.toList());
+    public void deleteTodo(Long id) {
+        todoRepository.deleteById(id);
     }
 }
