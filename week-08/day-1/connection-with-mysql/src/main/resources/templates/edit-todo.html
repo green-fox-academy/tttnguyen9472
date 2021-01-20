@@ -2,20 +2,24 @@
 <html lang="en" xmlns:th="https://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Add Todo</title>
+    <title>Edit Todo</title>
 </head>
 <body>
-<h1>Add new todo</h1>
-<form action="/todo/add" method="post">
-    <input type="text" name="title">
-    <br>
+<h1>Edit todo</h1>
+<form th:action="'/todo/' + ${todo.id} + '/edit'" method="post">
 
+
+    <label class="editText" for="title">Todo description</label>
+    <input type="text" name="title" id="title">
+    <button type="submit">Submit</button>
+
+    <br>
     <label class="urgentText" for="isUrgent">Urgent</label>
     <input type="checkbox" name="isUrgent" id="isUrgent">
     <br>
     <label class="doneText" for="isDone">Done</label>
     <input type="checkbox" name="isDone" id="isDone">
-    <button type="submit">Submit</button>
+
     <a href="/todo/list">Cancel</a>
 </form>
 </body>
