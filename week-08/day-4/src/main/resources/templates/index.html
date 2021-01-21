@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Reddit</title>
+</head>
+<body>
+
+<h1><a href="/">Reddit clone</a></h1>
+
+<a href="/submit">Submit new post</a>
+
+<ul>
+    <li><a href="/popular">Most popular post first</a></li>
+    <li><a href="/newest">Newest post first</a></li>
+    <li><a href="/oldest">Oldest post first</a></li>
+</ul>
+
+<h2>Trending posts</h2>
+
+<table>
+
+    <tr th:each="post: ${postList}">
+        <!--        <td th:text="${post.id}"></td>-->
+        <td th:text="${post.counter}"></td>
+        <td><a th:href="'/upvote/' + ${post.id}">+</a></td>
+        <td><a th:href="'/downvote/' + ${post.id}">-</a></td>
+        <td><a th:href="'/actual-post/' + ${post.id}" th:text="${post.title}"></a></td>
+        <td><a th:href="${post.url}">Direct link</a></td>
+        <td><a th:text="${post.timestamp}"></a></td>
+    </tr>
+
+</table>
+
+
+<a th:href="'/?page=' + ${pageNumber}"></a>
+
+
+</body>
+</html>
