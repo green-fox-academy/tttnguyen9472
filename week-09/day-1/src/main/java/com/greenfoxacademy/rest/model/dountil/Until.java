@@ -1,4 +1,4 @@
-package com.greenfoxacademy.rest.model;
+package com.greenfoxacademy.rest.model.dountil;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
