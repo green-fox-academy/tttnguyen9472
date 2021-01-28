@@ -1,15 +1,12 @@
 package com.greenfoxacademy.groot.controller;
 
+import com.greenfoxacademy.groot.model.*;
 import com.greenfoxacademy.groot.model.Error;
-import com.greenfoxacademy.groot.model.Groot;
-import com.greenfoxacademy.groot.model.Yondu;
 import com.greenfoxacademy.groot.service.GuardianService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class GuardianController {
@@ -32,13 +29,54 @@ public class GuardianController {
     }
 
     @GetMapping("/yondu")
-    public ResponseEntity<?> yondusArrow(@RequestParam(required = false) Double distance, @RequestParam(required = false) Double time){
+    public ResponseEntity<?> yondusArrow(@RequestParam(required = false) Double distance, @RequestParam(required = false) Double time) {
         if (distance != null || time != null) {
-            Yondu yondu = new Yondu(distance, time);
-            return ResponseEntity.ok(yondu);
+            Arrow arrow = new Arrow(distance, time);
+            return ResponseEntity.ok(arrow);
         }
         Error error = new Error("This is an error message!");
         return new ResponseEntity<>(guardianService.errorMessage(), HttpStatus.BAD_REQUEST);
     }
+
+    @GetMapping("/rocket")
+    public ResponseEntity<?> getActualCargo() {
+
+        return ResponseEntity.ok(guardianService.cargoStatus());
+    }
+
+    @GetMapping("/rocket/fill")
+    public ResponseEntity<?> fillCargo(@RequestParam(required = false) String caliber, @RequestParam(required = false) Integer amount) {
+        if (caliber != null || amount != null) {
+            RocketStatus rocketStatus = new RocketStatus(caliber, amount);
+            guardianService.cargoFilling(caliber, amount);
+            return ResponseEntity.ok(rocketStatus);
+        }
+        Error error = new Error("This is an error message!");
+        return new ResponseEntity<>(guardianService.errorMessage(), HttpStatus.BAD_REQUEST);
+    }
+
+    @GetMapping("/drax")
+    public ResponseEntity<?> getCalorieTable() {
+        return ResponseEntity.ok(guardianService.getCalorieTable());
+    }
+
+    @PostMapping("/drax")
+    public ResponseEntity<Food> addItemsToCalorieTable(@RequestBody(required = false) Food food) {
+        guardianService.addFood(food);
+        return new ResponseEntity<>(food, HttpStatus.CREATED);
+    }
+
+    @DeleteMapping("/drax")
+    public ResponseEntity<Food> deleteItemFromCalorieTable(@RequestBody(required = false) Food food) {
+        guardianService.deleteFood(food);
+        return new ResponseEntity<>(food, HttpStatus.OK);
+    }
+
+    @PutMapping("/drax")
+    public ResponseEntity<?> updateItemFromCalorieTable(@RequestBody(required = false) Food food) {
+        guardianService.updateFood(food);
+        return new ResponseEntity<>(food, HttpStatus.OK);
+    }
+
 
 }

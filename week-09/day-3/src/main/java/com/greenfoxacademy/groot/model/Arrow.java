@@ -5,13 +5,13 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class Yondu {
+public class Arrow {
 
     private Double distance;
     private Double time;
     private Double speed;
 
-    public Yondu(Double distance, Double time) {
+    public Arrow(Double distance, Double time) {
         this.distance = distance;
         this.time = time;
         this.speed = distance / time;
