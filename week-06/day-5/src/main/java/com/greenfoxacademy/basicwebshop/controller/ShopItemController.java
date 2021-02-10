@@ -94,8 +94,8 @@ public class ShopItemController {
     }
 
     @GetMapping("/clothes-and-shoes")
-    public String clothesAndShoes(Model model, @RequestParam String type) {
-        model.addAttribute("shopItems", getFilteredByType(type));
+    public String clothesAndShoes(Model model) {
+        model.addAttribute("shopItems", getFilteredByType("Clothes and Shoes"));
         return "more-filters";
     }
 
