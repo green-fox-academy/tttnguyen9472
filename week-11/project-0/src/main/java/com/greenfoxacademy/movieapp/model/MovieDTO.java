@@ -2,23 +2,21 @@ package com.greenfoxacademy.movieapp.model;
 
 import com.google.gson.annotations.SerializedName;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import java.util.List;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class MovieDTO {
 
-    private Integer id;
-    private String title;
-    @SerializedName("release_date")
-    private String releaseDate;
-    private String overview;
-    @SerializedName("original_date")
-    private String originalLanguage;
+    private Integer page;
+    private List<Movie> results;
+    @SerializedName("total_pages")
+    private Integer totalPages;
+    @SerializedName("total_results")
+    private Integer totalResults;
 
 }
