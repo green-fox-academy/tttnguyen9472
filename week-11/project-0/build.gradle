@@ -27,7 +27,6 @@ dependencies {
     implementation 'org.springframework.security:spring-security-test'
     implementation 'org.springframework.boot:spring-boot-starter-jdbc'
     implementation group: 'org.springframework.data', name: 'spring-data-jpa', version: '2.4.3'
-
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
     compileOnly 'org.projectlombok:lombok'
@@ -35,6 +34,8 @@ dependencies {
     runtimeOnly 'com.h2database:h2'
     runtimeOnly 'mysql:mysql-connector-java'
     annotationProcessor 'org.projectlombok:lombok'
+    compile 'io.jsonwebtoken:jjwt:0.9.1'
+    compile 'javax.xml.bind:jaxb-api:2.3.0'
 
 }
 
