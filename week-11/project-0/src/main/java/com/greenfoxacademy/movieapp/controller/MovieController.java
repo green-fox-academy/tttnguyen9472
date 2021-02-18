@@ -58,6 +58,12 @@ public class MovieController {
 
     }
 
+    @GetMapping("/hello")
+    @ResponseBody
+    public String hello() {
+        return ("Hello");
+    }
+
     @GetMapping("/")
     @ResponseBody
     public String home(){

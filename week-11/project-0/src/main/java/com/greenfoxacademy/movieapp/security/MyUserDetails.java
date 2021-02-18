@@ -1,5 +1,6 @@
 package com.greenfoxacademy.movieapp.security;
 
+import com.greenfoxacademy.movieapp.security.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -18,14 +19,13 @@ public class MyUserDetails implements UserDetails {
 
 
     public MyUserDetails(User user) {
-        this.userName = user.getUsername();
+        this.userName = user.getUserName();
         this.password = user.getPassword();
         this.active = user.getActive();
         this.authorities = Arrays.stream(user.getRoles().split(","))
                 .map(SimpleGrantedAuthority::new)
                 .collect(Collectors.toList());
     }
-
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
